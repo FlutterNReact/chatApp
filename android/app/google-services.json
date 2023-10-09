@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "886339758449",
+    "project_id": "tmtgapp",
+    "storage_bucket": "tmtgapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886339758449:android:6133c0dfc8a6d949a02ed0",
+        "android_client_info": {
+          "package_name": "com.flux.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886339758449-3kiuvbgvifqot3re8ifip8jij2n0sf6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSxM03mdVgRxj3dB-OMnnqo310w_C6RwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886339758449-3kiuvbgvifqot3re8ifip8jij2n0sf6p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
