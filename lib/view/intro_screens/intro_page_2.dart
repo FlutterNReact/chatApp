@@ -6,30 +6,26 @@ class IntroPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: const Color(0xFFEEF1F6),
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              children:  [
+              children: [
                 Image.asset(
                   'assets/images/page2.jpg',
                   height: 500,
                 ),
                 const SizedBox(height: 0),
-
                 const Text(
-                  'Front Line',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold
-                  ),
+                  'It Get Addictive',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Focusing on what is newsworthy instead of '
-                      'what is trending',
+                  'Chat in realtime with love one\'s for free. '
+                  'What do you think?',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18,

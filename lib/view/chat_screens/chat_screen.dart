@@ -28,7 +28,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   bool _isAttachmentUploading = false;
 
-  void _handleAtachmentPressed() {
+  void _handleAttachmentPressed() {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) => SafeArea(
@@ -200,9 +200,20 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: const Color(0xFFEEF1F6),
         appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: const Text('Chat'),
+          iconTheme: const IconThemeData(
+            color: Color.fromARGB(255, 84, 92, 105),
+          ),
+          backgroundColor: const Color(0xFFEEF1F6),
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          title: const Text(
+            'Chat',
+            style: TextStyle(
+              color: Color.fromARGB(255, 84, 92, 105),
+            ),
+          ),
+          elevation: 0.2,
         ),
         body: StreamBuilder<types.Room>(
           initialData: widget.room,
@@ -213,10 +224,16 @@ class _ChatScreenState extends State<ChatScreen> {
             builder: (context, snapshot) => Chat(
               isAttachmentUploading: _isAttachmentUploading,
               messages: snapshot.data ?? [],
-              onAttachmentPressed: _handleAtachmentPressed,
+              onAttachmentPressed: _handleAttachmentPressed,
               onMessageTap: _handleMessageTap,
               onPreviewDataFetched: _handlePreviewDataFetched,
               onSendPressed: _handleSendPressed,
+              theme: const DefaultChatTheme(
+                primaryColor: Color.fromARGB(255, 134, 140, 148),
+                backgroundColor: Color(0xFFEEF1F6),
+                // secondaryColor: ,
+                inputBackgroundColor: Color.fromARGB(255, 84, 92, 105),
+              ),
               user: types.User(
                 id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
               ),

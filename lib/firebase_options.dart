@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,20 +43,41 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDuhVCFV0m6x9wtrPu1I3pFE0WN9xPtBfE',
+    appId: '1:985763420397:web:fe98e1742ef550253094e4',
+    messagingSenderId: '985763420397',
+    projectId: 'chat-app212',
+    authDomain: 'chat-app212.firebaseapp.com',
+    databaseURL: 'https://chat-app212-default-rtdb.firebaseio.com/',
+    storageBucket: 'chat-app212.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBSxM03mdVgRxj3dB-OMnnqo310w_C6RwA',
-    appId: '1:886339758449:android:6133c0dfc8a6d949a02ed0',
-    messagingSenderId: '886339758449',
-    projectId: 'tmtgapp',
-    storageBucket: 'tmtgapp.appspot.com',
+    apiKey: 'AIzaSyCAMhV5S47XAWlf5KuwbnGuZayZlz2YqB0',
+    appId: '1:985763420397:android:8fdc935f376397093094e4',
+    messagingSenderId: '985763420397',
+    projectId: 'chat-app212',
+    databaseURL: 'https://chat-app212-default-rtdb.firebaseio.com/',
+    storageBucket: 'chat-app212.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCHrVT-EDwzbz5qYx2oDHdFVXglC2SGOyo',
-    appId: '1:886339758449:ios:1365881a6143f7c4a02ed0',
-    messagingSenderId: '886339758449',
-    projectId: 'tmtgapp',
-    storageBucket: 'tmtgapp.appspot.com',
+    apiKey: 'AIzaSyBoTRVN5r3v_jI0_tC1Et2LDhMi_HfewKE',
+    appId: '1:985763420397:ios:8af48501a48823613094e4',
+    messagingSenderId: '985763420397',
+    databaseURL: 'https://chat-app212-default-rtdb.firebaseio.com/',
+    projectId: 'chat-app212',
+    storageBucket: 'chat-app212.appspot.com',
     iosBundleId: 'com.flux.chatapp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBoTRVN5r3v_jI0_tC1Et2LDhMi_HfewKE',
+    appId: '1:985763420397:ios:e3bb22d8942c1cee3094e4',
+    messagingSenderId: '985763420397',
+    projectId: 'chat-app212',
+    storageBucket: 'chat-app212.appspot.com',
+    iosBundleId: 'com.flux.chatapp.RunnerTests',
   );
 }

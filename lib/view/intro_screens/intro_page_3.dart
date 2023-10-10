@@ -6,30 +6,26 @@ class IntroPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: const Color(0xFFEEF1F6),
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              children:  [
+              children: [
                 Image.asset(
-                  'assets/images/page3.jpg',
+                  'assets/images/page3.png',
                   height: 500,
                 ),
                 const SizedBox(height: 0),
-
                 const Text(
-                  'Sport News',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold
-                  ),
+                  'Chat App',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'The latest results from sports events '
-                      'around the world',
+                  'Bringing you amazing futures '
+                  'from the world of Messenger and Instagram',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18,

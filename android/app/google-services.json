@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "886339758449",
-    "project_id": "tmtgapp",
-    "storage_bucket": "tmtgapp.appspot.com"
+    "project_number": "985763420397",
+    "project_id": "chat-app212",
+    "storage_bucket": "chat-app212.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:886339758449:android:6133c0dfc8a6d949a02ed0",
+        "mobilesdk_app_id": "1:985763420397:android:8fdc935f376397093094e4",
         "android_client_info": {
           "package_name": "com.flux.chatapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "886339758449-3kiuvbgvifqot3re8ifip8jij2n0sf6p.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBSxM03mdVgRxj3dB-OMnnqo310w_C6RwA"
+          "current_key": "AIzaSyCAMhV5S47XAWlf5KuwbnGuZayZlz2YqB0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "886339758449-3kiuvbgvifqot3re8ifip8jij2n0sf6p.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -24,6 +24,22 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access for uploading profile picture and scanning QR code</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Turning on contacts access allows you to find user's by contact info</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Looking for local location to protect your account from unknown location access</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Turning on location allows us to protect your account from unauthorized location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Turning on location allows us to protect your account from unauthorized location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Turning on location allows us to protect your account from unauthorized location</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need microphone access for uploading profile picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need photo library access for uploading profile picture and scanning QR code</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

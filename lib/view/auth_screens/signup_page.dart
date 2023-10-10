@@ -1,5 +1,7 @@
 import 'package:chatapp/controllers/auth_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/utils/global_colors.dart';
 import 'package:chatapp/view/widgets/signup_button.dart';
@@ -38,9 +40,11 @@ class SignUpPageState extends State<SignUpPage> {
         ),
       );
     }
+    UserCredential? credential;
+    String? message;
+    String messageLabel = "Alert";
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
@@ -53,27 +57,40 @@ class SignUpPageState extends State<SignUpPage> {
           lastName: lastNameController.text.trim(),
         ),
       );
+      message =
+          "Your account have been created successfully, Login with your new credentials";
+      messageLabel = 'Congratulation';
+      emailController.clear();
+      passwordController.clear();
+      firstNameController.clear();
+      lastNameController.clear();
+    } on FirebaseException catch (e) {
+      if (kDebugMode) print(e);
+      message = e.message?.toString() ?? e.toString();
+      messageLabel = "Error";
     } catch (e) {
-      if (mounted) {
-        await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-            content: Text(
-              e.toString(),
-            ),
-            title: const Text('Error'),
-          ),
-        );
-      }
+      if (kDebugMode) print(e);
+      message = e.toString();
+      messageLabel = "Error";
     }
+    if (!mounted) return;
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+        content: Text(
+          message!,
+        ),
+        title: Text(messageLabel),
+      ),
+    );
     if (!mounted) return;
     Navigator.of(context).pop();
     setState(() {

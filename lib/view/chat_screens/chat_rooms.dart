@@ -30,7 +30,7 @@ class _ChatRoomsState extends State<ChatRooms> {
   }
 
   void logout() async {
-    await FirebaseAuth.instance.signOut();
+    await auth.logOut();
   }
 
   Widget _buildAvatar(types.Room room) {
@@ -70,7 +70,12 @@ class _ChatRoomsState extends State<ChatRooms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEEF1F6),
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Color.fromARGB(255, 84, 92, 105),
+        ),
+        backgroundColor: const Color(0xFFEEF1F6),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -90,8 +95,14 @@ class _ChatRoomsState extends State<ChatRooms> {
           icon: const Icon(Icons.logout),
           onPressed: _user == null ? null : logout,
         ),
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: const Text('Rooms'),
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        title: const Text(
+          'Rooms',
+          style: TextStyle(
+            color: Color.fromARGB(255, 84, 92, 105),
+          ),
+        ),
+        elevation: 0.2,
       ),
       body: StreamBuilder<List<types.Room>>(
         stream: FirebaseChatCore.instance.rooms(),

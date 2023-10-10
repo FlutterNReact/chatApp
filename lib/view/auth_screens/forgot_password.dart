@@ -17,33 +17,32 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   void dispose() {
     _emailController.dispose();
     super.dispose();
+  }
 
-    Future passwordReset() async {
-      try {
-        await FirebaseAuth.instance
-            .sendPasswordResetEmail(email: _emailController.text.trim());
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return const AlertDialog(
-                content: Text('Password reset link sent! check your email'),
-              );
-            },
-          );
-        }
-      } on FirebaseAuthException catch (e) {
-        print(e);
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(e.message.toString()),
-              );
-            },
-          );
-        }
+  Future _passwordReset() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text.trim());
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text('Password reset link sent! check your email'),
+            );
+          },
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(e.message.toString()),
+            );
+          },
+        );
       }
     }
   }
@@ -54,6 +53,10 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
       appBar: AppBar(
         backgroundColor: GlobalColors.mainColor,
         title: const Text('Forgot Password'),
+        leading: InkWell(
+          onTap: () => widget.controller.switchMode(AuthMode.login),
+          child: const BackButtonIcon(),
+        ),
       ),
       body: Center(
         child: Column(
@@ -86,13 +89,14 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  hintText: 'Email Address',
-                  fillColor: Colors.grey[100],
-                  filled: true),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: 'Email Address',
+                fillColor: Colors.grey[100],
+                filled: true,
+              ),
             ),
             const SizedBox(height: 10),
             Container(
@@ -109,9 +113,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 ],
               ),
               child: MaterialButton(
-                onPressed: () {
-                  widget.controller.switchMode(AuthMode.otp);
-                },
+                onPressed: _passwordReset,
                 child: const Text('Next'),
               ),
             ),

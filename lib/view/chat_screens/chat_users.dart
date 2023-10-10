@@ -33,9 +33,7 @@ class ChatUsers extends StatelessWidget {
   void _handlePressed(types.User otherUser, BuildContext context) async {
     final navigator = Navigator.of(context);
     final room = await FirebaseChatCore.instance.createRoom(otherUser);
-
-    navigator.pop();
-    await navigator.push(
+    await navigator.pushReplacement(
       MaterialPageRoute(
         builder: (context) => ChatScreen(
           room: room,
@@ -46,9 +44,20 @@ class ChatUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: const Color(0xFFEEF1F6),
         appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: const Text('Users'),
+          iconTheme: const IconThemeData(
+            color: Color.fromARGB(255, 84, 92, 105),
+          ),
+          backgroundColor: const Color(0xFFEEF1F6),
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          title: const Text(
+            'Users',
+            style: TextStyle(
+              color: Color.fromARGB(255, 84, 92, 105),
+            ),
+          ),
+          elevation: 0.2,
         ),
         body: StreamBuilder<List<types.User>>(
           stream: FirebaseChatCore.instance.users(),

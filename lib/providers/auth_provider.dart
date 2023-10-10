@@ -15,9 +15,19 @@ class AuthProvider extends ValueNotifier<User?> {
   }
 
   Future initializeFlutterFire() async {
+    if (credential != null) return;
     final credential_ = storage.getString('credential');
     if (credential_ != null) {
-      credential = jsonDecode(credential_);
+      try {
+        final json = jsonDecode(credential_) as Map;
+        print(json);
+        credential = AuthCredential(
+          accessToken: json['accessToken'],
+          providerId: json['providerId'],
+          signInMethod: json['signInMethod'],
+          token: json['token'],
+        );
+      } catch (_) {}
     }
     try {
       if (credential != null) {
@@ -29,6 +39,7 @@ class AuthProvider extends ValueNotifier<User?> {
       });
       error = false;
     } catch (e) {
+      print(e);
       error = true;
       notifyListeners();
     }
@@ -42,13 +53,19 @@ class AuthProvider extends ValueNotifier<User?> {
     credential = credentials.credential;
     if (credentials.credential != null) {
       storage.setString(
-          'credential', jsonEncode(credentials.credential?.asMap()));
+        'credential',
+        jsonEncode(credentials.credential?.asMap()),
+      );
     }
+    isLogin = credentials.user != null;
+    value = credentials.user;
     return credentials;
   }
 
   Future logOut() async {
     credential = null;
+    isLogin = false;
+    value = null;
     return await FirebaseAuth.instance.signOut();
   }
 }

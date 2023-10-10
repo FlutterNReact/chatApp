@@ -1,7 +1,6 @@
 import 'package:chatapp/providers/providers.dart';
 import 'package:chatapp/view/auth_view.dart';
-import 'package:chatapp/view/chat_screens/chat_room.dart';
-import 'package:chatapp/view/chat_screens/chat_screen.dart';
+import 'package:chatapp/view/chat_screens/chat_rooms.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {

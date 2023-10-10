@@ -1,5 +1,6 @@
 import 'package:chatapp/controllers/auth_controller.dart';
 import 'package:chatapp/providers/providers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/utils/global_colors.dart';
@@ -26,6 +27,8 @@ class _LoginViewState extends State<LoginView> {
     if (_loginIn) return;
     _loginIn = true;
     FocusScope.of(context).unfocus();
+    String? message;
+    String messageLabel = "Alert";
     try {
       if (mounted) {
         showDialog(
@@ -41,28 +44,35 @@ class _LoginViewState extends State<LoginView> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+    } on FirebaseException catch (e) {
+      if (kDebugMode) print(e);
+      message = e.message?.toString() ?? e.toString();
+      messageLabel = "Error";
     } catch (e) {
       if (kDebugMode) print(e);
-      if (mounted) {
-        await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            actions: [
-              TextButton(
-                onPressed: () {
-                  widget.controller.switchMode(AuthMode.login);
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-            content: Text(
-              e.toString(),
+      message = e.toString();
+      messageLabel = "Error";
+    }
+
+    if (!mounted) return;
+    if (message != null) {
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
             ),
-            title: const Text('Error'),
+          ],
+          content: Text(
+            message!,
           ),
-        );
-      }
+          title: Text(messageLabel),
+        ),
+      );
     }
     if (!mounted) return;
     Navigator.of(context).pop();
