@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:chatapp/utils/global_colors.dart';
 
 class ButtonGlobal extends StatelessWidget {
-  const ButtonGlobal({Key? key, this.onTap}) : super(key: key);
+  const ButtonGlobal({Key? key, this.onTap, this.label = 'Sign In'})
+      : super(key: key);
   final void Function()? onTap;
+  final String label;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -20,9 +22,9 @@ class ButtonGlobal extends StatelessWidget {
                 blurRadius: 10,
               )
             ]),
-        child: const Text(
-          'Sign In',
-          style: TextStyle(
+        child: Text(
+          label,
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
           ),

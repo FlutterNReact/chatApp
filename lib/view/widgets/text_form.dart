@@ -40,7 +40,11 @@ class TextForm extends StatelessWidget {
           border: InputBorder.none,
           prefixIcon: icon != null
               ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    right: 20,
+                    bottom: 5,
+                  ),
                   child: Icon(
                     icon,
                     size: 20,
@@ -96,7 +100,11 @@ class UserTextForm extends StatelessWidget {
           hintText: text,
           border: InputBorder.none,
           prefixIcon: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.only(
+              left: 20.0,
+              right: 20,
+              bottom: 5,
+            ),
             child: Icon(
               icon,
               size: 20,

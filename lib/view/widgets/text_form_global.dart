@@ -37,7 +37,11 @@ class TextFormGlobal extends StatelessWidget {
           hintText: text,
           border: InputBorder.none,
           prefixIcon: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.only(
+              left: 20.0,
+              right: 20,
+              bottom: 5,
+            ),
             child: Icon(
               FontAwesomeIcons.envelope,
               size: 20,

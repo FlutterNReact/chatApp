@@ -205,6 +205,7 @@ class SignUpPageState extends State<SignUpPage> {
         height: 50,
         color: Colors.white,
         alignment: Alignment.center,
+        margin: const EdgeInsets.only(bottom: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

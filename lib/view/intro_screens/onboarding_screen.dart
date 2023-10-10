@@ -46,72 +46,76 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     }
     return Scaffold(
-      body: Stack(
-        children: [
-          ////Page view
-          PageView(
-            controller: _controller,
-            onPageChanged: (index) {
-              setState(() {
-                onLastPge = (index == 2);
-              });
-            },
-            children: const [
-              IntroPage1(),
-              IntroPage2(),
-              IntroPage3(),
-            ],
-          ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            ////Page view
+            Expanded(
+              child: PageView(
+                controller: _controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    onLastPge = (index == 2);
+                  });
+                },
+                children: const [
+                  IntroPage1(),
+                  IntroPage2(),
+                  IntroPage3(),
+                ],
+              ),
+            ),
 
-          ////Dot indicator
-          Container(
-            alignment: const Alignment(0, 0.75),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ////skip
-                GestureDetector(
-                  onTap: _skip,
-                  child: const Text(
-                    'Skip',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-
-                SmoothPageIndicator(controller: _controller, count: 3),
-
-                //// next or done
-                if (onLastPge)
+            ////Dot indicator
+            Container(
+              alignment: const Alignment(0, 0.75),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ////skip
                   GestureDetector(
-                    onTap: _close,
+                    onTap: _skip,
                     child: const Text(
-                      'Done',
+                      'Skip',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
                       ),
                     ),
                   ),
-                if (!onLastPge)
-                  GestureDetector(
-                    onTap: () {
-                      _controller.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      );
-                    },
-                    child: const Text(
-                      'Next',
-                      style: TextStyle(fontSize: 16, color: Colors.blue),
+
+                  SmoothPageIndicator(controller: _controller, count: 3),
+
+                  //// next or done
+                  if (onLastPge)
+                    GestureDetector(
+                      onTap: _close,
+                      child: const Text(
+                        'Done',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.blue,
+                        ),
+                      ),
                     ),
-                  ),
-              ],
+                  if (!onLastPge)
+                    GestureDetector(
+                      onTap: () {
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: const Text(
+                        'Next',
+                        style: TextStyle(fontSize: 16, color: Colors.blue),
+                      ),
+                    ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -27,6 +27,9 @@ class _LoginViewState extends State<LoginView> {
     if (_loginIn) return;
     _loginIn = true;
     FocusScope.of(context).unfocus();
+    setState(() {
+      _loginIn = false;
+    });
     String? message;
     String messageLabel = "Alert";
     try {
@@ -184,6 +187,7 @@ class _LoginViewState extends State<LoginView> {
         height: 50,
         color: Colors.white,
         alignment: Alignment.center,
+        margin: const EdgeInsets.only(bottom: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
